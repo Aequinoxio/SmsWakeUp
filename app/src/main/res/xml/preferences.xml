@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <CheckBoxPreference
+        android:key="@string/shared_wakeUpOnlyFromNumber"
+        android:title="@string/pref_sync"
+        android:summary="@string/pref_sync_summ"
+        android:defaultValue="true" />
+
+    <EditTextPreference
+        android:title="@string/pref_body"
+        android:inputType="textShortMessage"
+        android:summary="@string/pref_body_summ"
+        android:key="@string/shared_msgBody"/>
+
+    <EditTextPreference
+        android:title="@string/pref_number"
+        android:inputType="phone"
+        android:summary="@string/pref_number_summ"
+        android:key="@string/shared_msgFromNumber"/>
+
+    <ListPreference
+        android:key="@string/shared_secsWait_name"
+        android:entries="@array/waitSecs"
+        android:summary="@string/pref_secsWait_summ"
+        android:entryValues="@array/waitSecsValues"
+        android:title="@string/pref_title_activity_settings" />
+</PreferenceScreen>

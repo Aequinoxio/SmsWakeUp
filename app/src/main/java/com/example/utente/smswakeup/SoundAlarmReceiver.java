@@ -11,8 +11,6 @@ import android.net.Uri;
 
 public class SoundAlarmReceiver extends BroadcastReceiver {
 
-    // MediaPlayer mMediaPlayer= new MediaPlayer();
-
     public SoundAlarmReceiver() {
     }
 
@@ -20,8 +18,6 @@ public class SoundAlarmReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         // This method is called when the BroadcastReceiver is receiving
         // an Intent broadcast.
-       // playRingTone(context);
-
         context.startService(new Intent(context, SoundService.class));
     }
 }

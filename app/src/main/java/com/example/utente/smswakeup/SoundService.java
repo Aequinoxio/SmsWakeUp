@@ -16,8 +16,6 @@ import android.support.v4.content.LocalBroadcastManager;
 public class SoundService extends Service {
 
     MediaPlayer mMediaPlayer= new MediaPlayer();
-    private int notificationID=987;
-    private int pendingIntentRequestCode=791;
     Notification myNotication;
 
 
@@ -25,10 +23,9 @@ public class SoundService extends Service {
     }
 
     private void aggiornaMainActivity(){
-        Intent intent = new Intent("AggiornaInterfaccia");
+        Intent intent = new Intent(this.getString(R.string.intent_AggiornaInterfaccia));
         LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
     }
-
 
     @Override
     public void onCreate(){
@@ -65,7 +62,7 @@ public class SoundService extends Service {
 
         setNotification(getApplicationContext());
         playRingTone(getApplicationContext());
-        startForeground(notificationID,myNotication);
+        startForeground(ApplicationSettings.notificationID,myNotication);
     }
 
     private void stopSound(){
@@ -84,7 +81,7 @@ public class SoundService extends Service {
         Intent intent = new Intent(context, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP|Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, pendingIntentRequestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context,ApplicationSettings.pendingIntentRequestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         Notification.Builder builder = new Notification.Builder(context);
 
@@ -106,7 +103,7 @@ public class SoundService extends Service {
         myNotication.flags |= Notification.FLAG_INSISTENT;
         myNotication.flags |= Notification.VISIBILITY_PUBLIC;
 
-        manager.notify(notificationID, myNotication);
+        manager.notify(ApplicationSettings.notificationID, myNotication);
     }
 
     private void playRingTone(Context context){
@@ -140,6 +137,7 @@ public class SoundService extends Service {
     private void stopRingTone(){
         if (mMediaPlayer.isPlaying()) {
             mMediaPlayer.stop();
+            mMediaPlayer.release();
         }
     }
 

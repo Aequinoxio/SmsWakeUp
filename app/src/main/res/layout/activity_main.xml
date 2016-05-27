@@ -8,214 +8,174 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.utente.smswakeup.MainActivity"
-    android:clickable="true"
-    android:focusableInTouchMode="true" >
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/msgBody"
-        android:id="@+id/txtView"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:gravity="center_horizontal"
-        android:textSize="16sp" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Deregistra"
-        android:id="@+id/button2"
-        android:visibility="invisible"
-        android:layout_alignTop="@+id/toggleButton"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <ToggleButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/btnAttivaReceiver"
-        android:id="@+id/toggleButton"
-        android:onClick="registerDeregisterReceiver"
-        android:visibility="invisible"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/button2"
-        android:layout_alignEnd="@+id/button2" />
-
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/cboxLockNumber"
-        android:id="@+id/cboxLockNumber"
-        android:checked="false"
-        android:clickable="false"
-        android:onClick="cboxMsgLockToggle"
-        android:layout_below="@+id/space"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+    android:clickable="false"
+    android:focusableInTouchMode="false"
+    android:scrollbars="vertical"
+    android:id="@+id/mainRelativeLayout">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/txtView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/relativeLayout">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:layout_width="fill_parent"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/msgWakeUp"
-            android:id="@+id/textView"
-            android:textSize="36sp"
-            android:gravity="center_horizontal"
+            android:id="@+id/relativeLayout1"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="10dp">
 
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:background="@drawable/roundedrect"
-            android:onClick="txtChangeMsgWakeUp"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/msgBody"
+                android:id="@+id/txtView"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:gravity="center_horizontal"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/msgWakeUp"
+                android:id="@+id/textView"
+                android:textSize="36sp"
+                android:gravity="center_horizontal"
+
+                android:background="@drawable/roundedrect"
+                android:visibility="visible"
+                android:layout_below="@+id/txtView"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/relativeLayout3"
+            android:layout_below="@+id/relativeLayout2"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Si"
+                android:id="@+id/txtLockNumber"
+                android:checked="false"
+                android:clickable="false"
+                android:visibility="visible"
+                android:layout_alignParentTop="false"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="false" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txtLockNumber"
+                android:id="@+id/textView5"
+
+                android:layout_alignParentTop="false"
+                android:layout_alignParentLeft="false"
+                android:layout_alignParentStart="false"
+                android:layout_toLeftOf="@+id/txtLockNumber"
+                android:layout_toStartOf="@+id/txtLockNumber" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:visibility="visible"
+            android:id="@+id/relativeLayout4"
+            android:layout_below="@+id/relativeLayout3"
             android:layout_alignParentLeft="true"
-            android:layout_marginLeft="0dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="0dp" />
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="20dp">
 
-        <EditText
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txtSecondsWait"
+                android:id="@+id/textView2"
+                android:layout_gravity="center_vertical"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3"
+                android:id="@+id/txtSecsWait"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editText"
-
-            android:layout_centerHorizontal="true"
-            android:visibility="gone"
+            android:id="@+id/relativeLayout2"
+            android:visibility="visible"
+            android:layout_below="@+id/relativeLayout1"
             android:layout_alignParentLeft="true"
-            android:layout_marginLeft="0dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="0dp" />
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="20dp">
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Ok"
-            android:id="@+id/btnAcceptMsgBody"
-            android:layout_gravity="center_horizontal|bottom"
-            android:onClick="btnChangeMsgWakeUp"
-            android:visibility="gone"
-            android:layout_below="@+id/editText"
-            android:layout_centerHorizontal="true" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txtNumeroNoto"
+                android:id="@+id/textView6"
+
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:gravity="center_horizontal" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/msgFromNumber"
+                android:id="@+id/textView3"
+                android:textSize="36sp"
+                android:gravity="center_horizontal"
+                android:background="@drawable/roundedrect"
+                android:layout_below="@+id/textView6"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+        </RelativeLayout>
+
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/relativeLayout2"
-        android:layout_below="@+id/cboxLockNumber"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:visibility="invisible">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/txtNumeroNoto"
-            android:id="@+id/textView6"
-
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:gravity="center_horizontal" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/msgFromNumber"
-            android:id="@+id/textView3"
-            android:textSize="36sp"
-            android:gravity="center_horizontal"
-            android:background="@drawable/roundedrect"
-            android:onClick="txtChangeNumberWakeUp"
-            android:layout_below="@+id/textView6"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/editText2"
-
-            android:visibility="gone"
-            android:layout_below="@+id/textView6"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:inputType="phone" />
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true">
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ok"
-            android:id="@+id/btnAcceptNumberBody"
-            android:layout_gravity="center_horizontal|bottom"
-            android:onClick="btnChangeNumberWakeUp"
-            android:visibility="gone"
-            android:layout_below="@+id/editText2"
+            android:text="Stop suono"
+            android:id="@+id/btnStopSoundService"
+            android:onClick="btnStopSoundService"
+            android:visibility="visible"
+            android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true" />
 
     </RelativeLayout>
-
-    <RelativeLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/space4"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/txtSecondsWait"
-            android:id="@+id/textView2"
-            android:layout_gravity="center_vertical"
-            android:layout_centerVertical="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-
-        <NumberPicker
-            android:layout_width="wrap_content"
-            android:layout_height="83dp"
-            android:id="@+id/numberPicker"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
-    </RelativeLayout>
-
-    <Space
-        android:layout_width="20px"
-        android:layout_height="50dp"
-        android:layout_below="@+id/relativeLayout"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/space" />
-
-    <Space
-        android:layout_width="20px"
-        android:layout_height="20dp"
-        android:id="@+id/space4"
-        android:layout_below="@+id/relativeLayout2"
-        android:layout_centerHorizontal="true" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Stop suono"
-        android:id="@+id/btnStopSoundService"
-        android:layout_alignBottom="@+id/button2"
-        android:layout_centerHorizontal="true"
-        android:onClick="btnStopSoundService" />
 
 </RelativeLayout>
+

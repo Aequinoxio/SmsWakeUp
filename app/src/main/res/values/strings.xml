@@ -16,16 +16,19 @@
     <string name="msgBodylabek">Messaggio ricevuto:</string>
 
     <string name="action_about">Informazioni</string>
+    <string name="action_settings">Impostazioni</string>
+
     <string name="Autore">Gabriele Galluzzo</string>
     <string name="descrizione">SmsWakeUp è un applicazione che permette di trovare il cellulare perso mandando un sms.\n Il cellulare inizierà a suonare al massimo volume.</string>
     <string name="cboxMsgBodyChange">Cambia il messaggio da ricevere</string>
     <string name="cboxMsgNumber">Cambia numero</string>
-    <string name="cboxLockNumber">Attivazione solo se il messaggio proviene dal numero noto</string>
+    <string name="txtLockNumber">Attivazione solo se il messaggio proviene dal numero noto</string>
     <string name="txtNumeroNoto">Numero noto</string>
 
     <string name="shared_msgBody">msgBody</string>
     <string name="shared_msgFromNumber">msgFromNumber</string>
     <string name="shared_wakeUpOnlyFromNumber">wakeUpOnlyFromNumber</string>
+    <string name="shared_secsWait_name">secsWait</string>
     <string name="shared_secsWait">5</string>
 
     <string name="txtSecondsWait">Secondi di attesa prima di suonare</string>
@@ -37,4 +40,23 @@
     <string name="notification_Ticker">Svegliati</string>
     <string name="notification_Text">Ti stanno cercando</string>
     <string name="notification_SubText">Suono al massimo</string>
+
+    <string name="intent_AggiornaInterfaccia">com.example.utente.SmsWakeUp.AggiornaInterfaccia</string>
+
+    <string name="pref_sync">wakeUpOnlyFromNumber</string>
+    <string name="pref_sync_summ">Messaggio solo dal numero selezionato</string>
+
+    <string name="pref_body">Messaggio chiave</string>
+    <string name="pref_body_summ">Messaggio per farmi svegliare</string>
+
+    <string name="pref_number">Numero mittente</string>
+    <string name="pref_number_summ">Mittente da cui posso accettare di essere svegliato</string>
+
+    <string name="pref_secsWait">Tempo di attesa</string>
+    <string name="pref_secsWait_summ">Tempo che aspetto prima di svegliarmi</string>
+    <string name="pref_title_activity_settings">Impostazioni</string>
+
+    <string name="Si">Si</string>
+    <string name="No">No</string>
+
 </resources>

@@ -34,14 +34,6 @@
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
         </receiver>
-
-        <activity
-            android:name=".WakeUpActivity"
-            android:label="@string/WakeUpActivity_name"
-            android:screenOrientation="portrait"
-            android:showForAllUsers="true"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
-
         <receiver
             android:name=".SoundAlarmReceiver"
             android:enabled="true"
@@ -50,7 +42,9 @@
         <service
             android:name=".SoundService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
+
+        <activity android:name=".SimpleSettingsActivity"></activity>
     </application>
 
 </manifest>
