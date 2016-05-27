@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">SmsWakeUp</string>
+    <string name="MainActivity_name">Sms WakeUp</string>
+    <string name="WakeUpActivity_name">Wake up!!!</string>
+
+    <string name="msgBody">Per farmi svegliare devi mandarmi il messaggio chiave:</string>
+    <string name="msgWakeUp">Svegliati non riesco a trovarti!!!</string>
+
+    <string name="callNumber">Inviato da questo numero di telefono:</string>
+    <string name="msgFromNumber">1234567890</string>
+
+    <string name="btnStopSoundLabel">Ferma il suono e chiudi</string>
+    <string name="btnAttivaReceiver">Attiva</string>
+    <string name="btnDisattivaReceiver">Disattiva</string>
+
+    <string name="msgBodylabek">Messaggio ricevuto:</string>
+
+    <string name="action_about">Informazioni</string>
+    <string name="Autore">Gabriele Galluzzo</string>
+    <string name="descrizione">SmsWakeUp è un applicazione che permette di trovare il cellulare perso mandando un sms.\n Il cellulare inizierà a suonare al massimo volume.</string>
+    <string name="cboxMsgBodyChange">Cambia il messaggio da ricevere</string>
+    <string name="cboxMsgNumber">Cambia numero</string>
+    <string name="cboxLockNumber">Attivazione solo se il messaggio proviene dal numero noto</string>
+    <string name="txtNumeroNoto">Numero noto</string>
+
+    <string name="shared_msgBody">msgBody</string>
+    <string name="shared_msgFromNumber">msgFromNumber</string>
+    <string name="shared_wakeUpOnlyFromNumber">wakeUpOnlyFromNumber</string>
+    <string name="shared_secsWait">5</string>
+
+    <string name="txtSecondsWait">Secondi di attesa prima di suonare</string>
+
+    <string name="warning_numberLock">Se non specifichi un numero noto, il telefono può essere svegliato da chiunque ti invii il messaggio chiave.</string>
+    <string name="txtRitardo">Tempo di attivazione (sec)</string>
+
+    <string name="notification_Title">Wake up!!! Ti stanno cercando</string>
+    <string name="notification_Ticker">Svegliati</string>
+    <string name="notification_Text">Ti stanno cercando</string>
+    <string name="notification_SubText">Suono al massimo</string>
+</resources>
