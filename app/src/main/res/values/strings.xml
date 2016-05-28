@@ -10,6 +10,7 @@
     <string name="sms_genericError">Errore nell\'invio</string>
     <string name="sms_noService">Nessun servizio</string>
     <string name="sms_noPDU">PDU inesistente</string>
+    <string name="sms_noRadio">Connettività telefonica assente</string>
     <string name="sms_delivered">Messaggio consegnato</string>
     <string name="sms_notDelivered">Impossibile consegnare il messaggio</string>
 

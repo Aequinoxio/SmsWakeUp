@@ -320,7 +320,7 @@ public class MainActivity extends AppCompatActivity {
                                 Toast.LENGTH_LONG).show();
                         break;
                     case SmsManager.RESULT_ERROR_RADIO_OFF:
-                        Toast.makeText(getBaseContext(), "Radio off",
+                        Toast.makeText(getBaseContext(), getString(R.string.sms_noRadio),
                                 Toast.LENGTH_LONG).show();
                         break;
                 }
