@@ -37,20 +37,35 @@
                 android:gravity="center_horizontal"
                 android:textSize="16sp" />
 
-            <TextView
+            <ScrollView
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="@string/msgWakeUp"
-                android:id="@+id/textView"
-                android:textSize="36sp"
-                android:gravity="center_horizontal"
-
-                android:background="@drawable/roundedrect"
-                android:visibility="visible"
+                android:layout_height="100dp"
                 android:layout_below="@+id/txtView"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:scrollbars="vertical"
+                android:id="@+id/scrollView"
+                android:layout_alignParentEnd="false"
+                android:background="@drawable/roundedrect"
+                android:scrollIndicators="left"
+                android:scrollbarAlwaysDrawVerticalTrack="false"
+                android:fadeScrollbars="false"
+                android:scrollbarFadeDuration="0">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="@string/msgWakeUp"
+                    android:id="@+id/textView"
+                    android:textSize="36sp"
+                    android:gravity="center_horizontal"
+
+                    android:visibility="visible"
+                    android:layout_below="@+id/txtView"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:scrollbars="vertical"
+                    android:minLines="2" />
+            </ScrollView>
 
         </RelativeLayout>
 
@@ -60,6 +75,10 @@
             android:id="@+id/relativeLayout3"
             android:layout_below="@+id/relativeLayout2"
             android:layout_marginTop="20dp">
+
+            <View style="@style/Divider"
+                android:layout_centerHorizontal="true"
+                 />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -97,6 +116,11 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_marginTop="20dp">
+
+            <View style="@style/Divider"
+
+                android:layout_centerHorizontal="true"
+                />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -160,10 +184,12 @@
 
     </RelativeLayout>
 
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_centerHorizontal="true">
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentEnd="false">
 
         <Button
             android:layout_width="wrap_content"

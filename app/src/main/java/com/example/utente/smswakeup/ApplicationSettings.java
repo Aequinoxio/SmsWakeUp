@@ -44,7 +44,7 @@ public class ApplicationSettings {
     }
 
     public static void loadSharedPreferences(Context context){
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
 
         msgBody= sharedPreferences.getString("msgBody",context.getString(R.string.msgWakeUp));
         msgFromNumber=sharedPreferences.getString("msgFromNumber",context.getString(R.string.msgFromNumber));
@@ -53,6 +53,15 @@ public class ApplicationSettings {
         secsWaitSound = Integer.valueOf(
                 sharedPreferences.getString("secsWait",context.getString(R.string.shared_secsWait))
         );
+
+        // Check se è la prima esecuzione
+        boolean firstRun = sharedPreferences.getBoolean("firstRun", true);
+        // Alla prima esecuzione salvo tutto
+        if (firstRun){
+            sharedPreferences.edit().putBoolean("firstRun", false).commit();
+            saveSharedPreferences(context);
+        }
+
     }
 
     public static void saveSharedPreferences(Context context){

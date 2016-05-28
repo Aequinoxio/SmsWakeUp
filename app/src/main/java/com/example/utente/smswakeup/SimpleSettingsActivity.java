@@ -29,11 +29,27 @@ public class SimpleSettingsActivity extends PreferenceActivity implements Shared
 
         // Set summary to be the user-description for the selected value
         String s;
-        if (!key.equals(KEY_BOOL)) {
-            connectionPref.setSummary(sharedPreferences.getString(key, ""));
+
+        switch (key){
+            case ("msgBody"):
+                s=getString(R.string.msgWakeUp);
+                break;
+            case ("msgFromNumber"):
+                s=getString(R.string.msgFromNumber);
+                break;
+            case ("secsWait"):
+                s=getString(R.string.shared_secsWait);
+                break;
+            default:
+                s="";
         }
 
+        if (!key.equals(KEY_BOOL)) {
+            connectionPref.setSummary(sharedPreferences.getString(key, s));
+        }
     }
+
+
     @Override
     protected void onResume() {
         super.onResume();

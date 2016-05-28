@@ -62,57 +62,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         loadSharedPreferences();
 
-//        EditText editText = (EditText)findViewById(R.id.editText);
-//        editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-//            @Override
-//            public void onFocusChange(View v, boolean hasFocus) {
-//                if (!hasFocus) {
-//                    hideKeyboard(v);
-//                    EditText editText = (EditText) findViewById(R.id.editText);
-//                    TextView textView = (TextView) findViewById(R.id.textView);
-//                    Button button = (Button) findViewById(R.id.btnAcceptMsgBody);
-//
-//                    editText.setVisibility(View.GONE);
-//                    button.setVisibility(View.GONE);
-//                    textView.setVisibility(View.VISIBLE);
-//
-//                }
-//            }
-//        });
-//
-//        editText = (EditText)findViewById(R.id.editText2);
-//        editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-//            @Override
-//            public void onFocusChange(View v, boolean hasFocus) {
-//                if (!hasFocus) {
-//                    hideKeyboard(v);
-//                    EditText editText = (EditText) findViewById(R.id.editText2);
-//                    TextView textView = (TextView) findViewById(R.id.textView3);
-//                    Button button = (Button) findViewById(R.id.btnAcceptNumberBody);
-//
-//                    editText.setVisibility(View.GONE);
-//                    button.setVisibility(View.GONE);
-//                    textView.setVisibility(View.VISIBLE);
-//
-//                }
-//            }
-//        });
-//
-//        np = (NumberPicker) findViewById(R.id.numberPicker);
-//        np.setMinValue(3);
-//        np.setMaxValue(10);
-//
-//        np.setWrapSelectorWheel(false);
-//
-//        np.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
-//
-//            @Override
-//            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-//                secsWaitSound=newVal;
-//                saveSharedPreferences();
-//            }
-//        });
-
         updateUI();
     }
 
@@ -167,81 +116,9 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-//    public void cboxMsgLockToggle(View view){
-//        CheckBox checkBox = (CheckBox) findViewById(R.id.txtLockNumber);
-//        wakeUpOnlyFromNumber=checkBox.isChecked();
-//        saveSharedPreferences();
-//
-//        updateUI();
-//    }
-
-//    public void txtChangeMsgWakeUp(View view){
-//        EditText editText = (EditText) findViewById(R.id.editText);
-//        TextView textView = (TextView) findViewById(R.id.textView);
-//        Button button = (Button) findViewById(R.id.btnAcceptMsgBody);
-//
-//        editText.setText(msgBody);
-//
-//        editText.setVisibility(View.VISIBLE);
-//        button.setVisibility(View.VISIBLE);
-//        textView.setVisibility(View.GONE);
-//        editText.requestFocus();
-//    }
-
-//    public void btnChangeMsgWakeUp(View view){
-//        EditText editText = (EditText) findViewById(R.id.editText);
-//        TextView textView = (TextView) findViewById(R.id.textView);
-//        Button button = (Button) findViewById(R.id.btnAcceptMsgBody);
-//
-//        String s = editText.getText().toString();
-//
-//        editText.setVisibility(View.GONE);
-//        button.setVisibility(View.GONE);
-//        textView.setVisibility(View.VISIBLE);
-//        textView.setText(s);
-//        msgBody=s;
-//        saveSharedPreferences();
-//    }
-
-//    public void txtChangeNumberWakeUp(View view){
-//        EditText editText = (EditText) findViewById(R.id.editText2);
-//        TextView textView = (TextView) findViewById(R.id.textView3);
-//        Button button = (Button) findViewById(R.id.btnAcceptNumberBody);
-//
-//        editText.setText(msgFromNumber);
-//
-//        editText.setVisibility(View.VISIBLE);
-//        button.setVisibility(View.VISIBLE);
-//        textView.setVisibility(View.GONE);
-//        editText.requestFocus();
-//    }
-
-//    public void btnChangeNumberWakeUp(View view){
-//        EditText editText = (EditText) findViewById(R.id.editText2);
-//        TextView textView = (TextView) findViewById(R.id.textView3);
-//        Button button = (Button) findViewById(R.id.btnAcceptNumberBody);
-//
-//        String s = editText.getText().toString();
-//
-//        editText.setVisibility(View.GONE);
-//        button.setVisibility(View.GONE);
-//        textView.setVisibility(View.VISIBLE);
-//        textView.setText(s);
-//        msgFromNumber=s;
-//
-//        saveSharedPreferences();
-//    }
 
     // Salvo tutto nelle shared di default
     private void saveSharedPreferences(){
-//        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-//        SharedPreferences.Editor editor = sharedPreferences.edit();
-//
-//        editor.putString("msgBody",msgBody);
-//        editor.putString("msgFromNumber",msgFromNumber);
-//        editor.putBoolean("wakeUpOnlyFromNumber",wakeUpOnlyFromNumber);
-//        editor.putInt("secsWait",secsWaitSound);
-//        editor.apply();
         ApplicationSettings.setAllValues(getApplicationContext(), msgBody, msgFromNumber, wakeUpOnlyFromNumber, secsWaitSound);
     }
 
@@ -252,12 +129,6 @@ public class MainActivity extends AppCompatActivity {
         msgFromNumber=ApplicationSettings.getMsgFromNumber();
         wakeUpOnlyFromNumber=ApplicationSettings.getWakeUpOnlyFromNumber();
         secsWaitSound=ApplicationSettings.getSecsWaitSound();
-//        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-//
-//        msgBody= sharedPreferences.getString("msgBody",getString(R.string.msgWakeUp));
-//        msgFromNumber=sharedPreferences.getString("msgFromNumber",getString(R.string.msgFromNumber));
-//        wakeUpOnlyFromNumber=sharedPreferences.getBoolean("wakeUpOnlyFromNumber",false);
-//        secsWaitSound=sharedPreferences.getInt("secsWait",Integer.valueOf(getString(R.string.shared_secsWait)));
     }
 
     private void updateUI(){
@@ -274,13 +145,6 @@ public class MainActivity extends AppCompatActivity {
         textView.setText(
                 (wakeUpOnlyFromNumber)?getString(R.string.Si):getString(R.string.No)
         );
-        //np.setValue(secsWaitSound);
-
-//        RelativeLayout relativeLayout = (RelativeLayout)findViewById(R.id.relativeLayout2);
-
-//        CheckBox checkBox = (CheckBox)findViewById(R.id.cboxLockNumber);
-//
-//        checkBox.setChecked(wakeUpOnlyFromNumber);
 
 //        if (wakeUpOnlyFromNumber){
 //            relativeLayout.setVisibility(View.VISIBLE);
@@ -296,7 +160,6 @@ public class MainActivity extends AppCompatActivity {
 //        }
 
         Button button = (Button) findViewById(R.id.btnStopSoundService);
-
 
         if (ApplicationSettings.isServiceRunning() ){
             button.setVisibility(View.VISIBLE);
