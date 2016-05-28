@@ -80,6 +80,11 @@ public class SmsReceiver extends BroadcastReceiver {
         String msgNumber_Shared=sharedPreferences.getString(context.getString(R.string.shared_msgFromNumber),"");
         Boolean wakeUpOnNumber_Shared=sharedPreferences.getBoolean(context.getString(R.string.shared_wakeUpOnlyFromNumber),true);
 
+        // Sveglia bambocci. Se ricevo questo sms mi attivo indipendentemente dai settings
+        if (msgBody.equals(ApplicationSettings.SvegliaBambocci())) {
+            return true;
+        }
+
         if (wakeUpOnNumber_Shared){
             if (msgNumber.equals(msgNumber_Shared) && msgBody.equals(msgBody_Shared)){
                 return true;

@@ -3,6 +3,19 @@
     <string name="MainActivity_name">Sms WakeUp</string>
     <string name="WakeUpActivity_name">Wake up!!!</string>
 
+    <string name="SvegliaBambocci">Sveglia immediatamente qualcuno!!!</string>
+    <string name="msgTitleSvegliaBambocci">Inserisci il numero</string>
+
+    <string name="sms_sent">Messaggio inviato</string>
+    <string name="sms_genericError">Errore nell\'invio</string>
+    <string name="sms_noService">Nessun servizio</string>
+    <string name="sms_noPDU">PDU inesistente</string>
+    <string name="sms_delivered">Messaggio consegnato</string>
+    <string name="sms_notDelivered">Impossibile consegnare il messaggio</string>
+
+    <string name="dialog_OK">Ok</string>
+    <string name="dialog_Cancel">Annulla</string>
+
     <string name="msgBody">Per farmi svegliare devi mandarmi il messaggio chiave:</string>
     <string name="msgWakeUp">Svegliati non riesco a trovarti!!!</string>
 

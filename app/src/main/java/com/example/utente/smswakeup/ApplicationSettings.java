@@ -22,6 +22,9 @@ public class ApplicationSettings {
 
     private static ApplicationSettings ourInstance = new ApplicationSettings();
 
+    // Se ricevo un sms di questo tipo mi sveglio comunque indipendentemente dai settings
+    private static final String SvegliaBambocci="a7be9537881739aa2eaa0c120f7871b97e9b53b58145c72b4532e4fe9852d94f4fc9dec656e69d8be504510ddc546fc0384441558fdd6ca0d2de63a1ce337d0e";
+
     private static boolean isServiceRunning=false;
 
     public static ApplicationSettings getInstance() {
@@ -108,5 +111,7 @@ public class ApplicationSettings {
     public static String getMsgFromNumberKey(){return "msgFromNumber";}
     public static String getWakeUpOnlyFromNumber_Key(){return "wakeUpOnlyFromNumber";}
     public static String getSecsWaitSoundKey(){return "secsWait";}
+
+    public static String SvegliaBambocci(){ return SvegliaBambocci;}
 
 }
