@@ -17,6 +17,7 @@ import android.os.PowerManager;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.telephony.SmsMessage;
+import android.util.Log;
 
 public class SmsReceiver extends BroadcastReceiver {
 
@@ -33,6 +34,15 @@ public class SmsReceiver extends BroadcastReceiver {
         Bundle bundle = intent.getExtras();
         if (bundle != null) {
             Object[] pdus = (Object[]) bundle.get("pdus");
+
+//            /// DEBUG
+//            for (String key : bundle.keySet()) {
+//                Object value = bundle.get(key);
+//                Log.d("**** PDU ****", String.format("%s %s (%s)", key,
+//                        value.toString(), value.getClass().getName()));
+//            }
+//            /// DEBUG
+
             if (pdus != null) {
                 SmsMessage[] messages = new SmsMessage[pdus.length];
                 for (int i = 0; i < pdus.length; i++) {
