@@ -6,12 +6,15 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.IBinder;
 import android.support.v4.content.LocalBroadcastManager;
+
+import timber.log.Timber;
 
 public class SoundService extends Service {
 
@@ -20,6 +23,9 @@ public class SoundService extends Service {
 
 
     public SoundService() {
+        Timber.tag("SoundService");
+        Timber.e(this.getClass().getSimpleName()+" - "+Thread.currentThread().getStackTrace()[2].getMethodName());
+
     }
 
     private void aggiornaMainActivity(){
@@ -29,17 +35,25 @@ public class SoundService extends Service {
 
     @Override
     public void onCreate(){
+        Timber.tag("SoundService");
+        Timber.e(this.getClass().getSimpleName()+" - "+Thread.currentThread().getStackTrace()[2].getMethodName());
         super.onCreate();
     }
 
     @Override
     public void onDestroy(){
+        Timber.tag("SoundService");
+        Timber.e(this.getClass().getSimpleName()+" - "+Thread.currentThread().getStackTrace()[2].getMethodName());
+
         stopSound();
         ApplicationSettings.setServiceStopped();
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        Timber.tag("SoundService");
+        Timber.e(this.getClass().getSimpleName()+" - "+Thread.currentThread().getStackTrace()[2].getMethodName());
+
         super.onStartCommand(intent,flags,startId);
 
         startSound();
@@ -53,12 +67,17 @@ public class SoundService extends Service {
         @Override
     public IBinder onBind(Intent intent) {
         // TODO: Return the communication channel to the service.
+        Timber.tag("SoundService");
+        Timber.e(this.getClass().getSimpleName()+" - "+Thread.currentThread().getStackTrace()[2].getMethodName());
+
        return null;
             //throw new UnsupportedOperationException("Not yet implemented");
 
     }
 
     private void startSound(){
+        Timber.tag("SoundService");
+        Timber.e(this.getClass().getSimpleName()+" - "+Thread.currentThread().getStackTrace()[2].getMethodName());
 
         setNotification(getApplicationContext());
         playRingTone(getApplicationContext());
@@ -66,6 +85,8 @@ public class SoundService extends Service {
     }
 
     private void stopSound(){
+        Timber.tag("SoundService");
+        Timber.e(this.getClass().getSimpleName()+" - "+Thread.currentThread().getStackTrace()[2].getMethodName());
 
         stopRingTone();
         stopForeground(true);
@@ -73,6 +94,8 @@ public class SoundService extends Service {
 
 
     private void setNotification(Context context){
+        Timber.tag("SoundService");
+        Timber.e(this.getClass().getSimpleName()+" - "+Thread.currentThread().getStackTrace()[2].getMethodName());
 
         // playRingTone(context);
 
@@ -107,6 +130,8 @@ public class SoundService extends Service {
     }
 
     private void playRingTone(Context context){
+        Timber.tag("SoundService");
+        Timber.e(this.getClass().getSimpleName()+" - "+Thread.currentThread().getStackTrace()[2].getMethodName());
 
         AudioManager audioManager;
 
@@ -135,10 +160,64 @@ public class SoundService extends Service {
     }
 
     private void stopRingTone(){
+        Timber.tag("SoundService");
+        Timber.e(this.getClass().getSimpleName()+" - "+Thread.currentThread().getStackTrace()[2].getMethodName());
+
         if (mMediaPlayer.isPlaying()) {
             mMediaPlayer.stop();
             mMediaPlayer.release();
         }
     }
+/////////////////////////////
 
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        Timber.tag("SoundService");
+        Timber.e(this.getClass().getSimpleName()+" - "+Thread.currentThread().getStackTrace()[2].getMethodName());
+
+        super.onConfigurationChanged(newConfig);
+    }
+
+    @Override
+    public void onLowMemory() {
+        Timber.tag("SoundService");
+        Timber.e(this.getClass().getSimpleName()+" - "+Thread.currentThread().getStackTrace()[2].getMethodName());
+        super.onLowMemory();
+    }
+
+    @Override
+    public void onRebind(Intent intent) {
+        Timber.tag("SoundService");
+        Timber.e(this.getClass().getSimpleName()+" - "+Thread.currentThread().getStackTrace()[2].getMethodName());
+        super.onRebind(intent);
+    }
+
+    @Override
+    public void onStart(Intent intent, int startId) {
+        Timber.tag("SoundService");
+        Timber.e(this.getClass().getSimpleName()+" - "+Thread.currentThread().getStackTrace()[2].getMethodName());
+        super.onStart(intent, startId);
+    }
+
+    @Override
+    public void onTaskRemoved(Intent rootIntent) {
+        Timber.tag("SoundService");
+        Timber.e(this.getClass().getSimpleName()+" - "+Thread.currentThread().getStackTrace()[2].getMethodName());
+        super.onTaskRemoved(rootIntent);
+    }
+
+    @Override
+    public void onTrimMemory(int level) {
+        Timber.tag("SoundService");
+        Timber.e(this.getClass().getSimpleName()+" - "+Thread.currentThread().getStackTrace()[2].getMethodName());
+        super.onTrimMemory(level);
+    }
+
+    @Override
+    public boolean onUnbind(Intent intent) {
+        Timber.tag("SoundService");
+        Timber.e(this.getClass().getSimpleName()+" - "+Thread.currentThread().getStackTrace()[2].getMethodName());
+        return super.onUnbind(intent);
+    }
 }

@@ -15,11 +15,10 @@
         <item name="2">4</item>
         <item name="3">5</item>
         <item name="4">6</item>
-        <item name="1">7</item>
-        <item name="1">8</item>
-        <item name="1">9</item>
-        <item name="1">10</item>
-
+        <item name="5">7</item>
+        <item name="6">8</item>
+        <item name="7">9</item>
+        <item name="8">10</item>
     </string-array>
 
 </resources>

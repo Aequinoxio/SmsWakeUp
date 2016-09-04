@@ -44,6 +44,7 @@
     <string name="shared_msgBody">msgBody</string>
     <string name="shared_msgFromNumber">msgFromNumber</string>
     <string name="shared_wakeUpOnlyFromNumber">wakeUpOnlyFromNumber</string>
+    <string name="shared_logActionsToFile">logActionsToFile</string>
     <string name="shared_secsWait_name">secsWait</string>
     <string name="shared_secsWait">5</string>
 
@@ -59,8 +60,8 @@
 
     <string name="intent_AggiornaInterfaccia">com.example.utente.SmsWakeUp.AggiornaInterfaccia</string>
 
-    <string name="pref_sync">wakeUpOnlyFromNumber</string>
-    <string name="pref_sync_summ">Messaggio solo dal numero selezionato</string>
+    <string name="pref_sync">Vincolo sul mittente</string>
+    <string name="pref_sync_summ">Mi sveglio solo se il messaggio viene dal numero selezionato</string>
 
     <string name="pref_body">Messaggio chiave</string>
     <string name="pref_body_summ">Messaggio per farmi svegliare</string>
@@ -70,7 +71,10 @@
 
     <string name="pref_secsWait">Tempo di attesa</string>
     <string name="pref_secsWait_summ">Tempo che aspetto prima di svegliarmi</string>
-    <string name="pref_title_activity_settings">Impostazioni</string>
+    <string name="pref_title_activity_settings">Secondi di attesa prima di suonare</string>
+
+    <string name="pref_log_on_file">Log su file</string>
+    <string name="pref_log_on_file_summ">Log su file degli eventi dell\'applicazione</string>
 
     <string name="Si">Si</string>
     <string name="No">No</string>

@@ -9,6 +9,7 @@ import android.os.Bundle;
 
 public class SimpleSettingsActivity extends PreferenceActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
     public static String KEY_BOOL = null;
+    public static String KEY_BOOL1 = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,6 +17,7 @@ public class SimpleSettingsActivity extends PreferenceActivity implements Shared
        // setContentView(R.layout.activity_simple_settings);
 
         KEY_BOOL = getString(R.string.shared_wakeUpOnlyFromNumber);
+        KEY_BOOL1 = getString(R.string.shared_logActionsToFile);
         addPreferencesFromResource(R.xml.preferences);
 
         setSummary();
@@ -44,7 +46,7 @@ public class SimpleSettingsActivity extends PreferenceActivity implements Shared
                 s="";
         }
 
-        if (!key.equals(KEY_BOOL)) {
+        if (!key.equals(KEY_BOOL) && !key.equals(KEY_BOOL1)) {
             connectionPref.setSummary(sharedPreferences.getString(key, s));
         }
     }

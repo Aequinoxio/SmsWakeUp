@@ -24,4 +24,10 @@
         android:summary="@string/pref_secsWait_summ"
         android:entryValues="@array/waitSecsValues"
         android:title="@string/pref_title_activity_settings" />
+
+    <CheckBoxPreference
+        android:key="@string/shared_logActionsToFile"
+        android:title="@string/pref_log_on_file"
+        android:summary="@string/pref_log_on_file_summ"
+        android:defaultValue="false" />
 </PreferenceScreen>

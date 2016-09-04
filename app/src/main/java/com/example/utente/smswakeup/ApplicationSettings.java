@@ -5,7 +5,18 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.ConfigurationInfo;
+import android.location.Location;
+import android.os.Environment;
 import android.preference.PreferenceManager;
+import android.util.Log;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 /**
  * Created by utente on 27/05/2016.
@@ -15,10 +26,20 @@ public class ApplicationSettings {
     protected static int pendingIntentRequestCode=791;
     protected static int alarmID=792;
 
+    // Riavvio allarme per tenere sveglia l'applicazione in memoria
+    protected static int pollingID=793;
+    protected static final String pollingAction="com.example.utente.smswakeup.PollingAlarmReceiver";
+    protected static final int pollingTime=60*5*1000; // 5 minuti
+
+    protected static Context mContext;
+
     protected static String msgBody;
     protected static String msgFromNumber;
     protected static Boolean wakeUpOnlyFromNumber;
     protected static int secsWaitSound;
+    protected static boolean logActionsToFile=false;
+
+    private static File fileSalvataggio=null;
 
     private static ApplicationSettings ourInstance = new ApplicationSettings();
 
@@ -52,6 +73,7 @@ public class ApplicationSettings {
         msgBody= sharedPreferences.getString("msgBody",context.getString(R.string.msgWakeUp));
         msgFromNumber=sharedPreferences.getString("msgFromNumber",context.getString(R.string.msgFromNumber));
         wakeUpOnlyFromNumber=sharedPreferences.getBoolean("wakeUpOnlyFromNumber",false);
+        logActionsToFile=sharedPreferences.getBoolean("logActionsToFile",false);
 
         secsWaitSound = Integer.valueOf(
                 sharedPreferences.getString("secsWait",context.getString(R.string.shared_secsWait))
@@ -65,6 +87,10 @@ public class ApplicationSettings {
             saveSharedPreferences(context);
         }
 
+    }
+
+    public static boolean isLoggingActivated(){
+        return logActionsToFile;
     }
 
     public static void saveSharedPreferences(Context context){
@@ -114,4 +140,44 @@ public class ApplicationSettings {
 
     public static String SvegliaBambocci(){ return SvegliaBambocci;}
 
+
+    public static void setFileSalvataggio(Context context){
+        // TODO: Costante estensione cablata
+        String filenameLog="logfileSmsWakeUp.txt";
+        // TODO: rendere il file parametrico per es. a livello giornaliero o far scegliere all'utente
+        // fileSalvataggio = new File(context.getFilesDir(), "pippo.txt");
+        // Creo una dir sulla SD
+        File sd = new File(Environment.getExternalStorageDirectory() + "/SmsWakeUp");
+
+        // Provo a creare la directory sulla sd
+        boolean successCreaDir = true;
+        if (!sd.exists()) {
+            successCreaDir = sd.mkdir();
+        }
+
+        // Se non riesco a creare la directory metto tutto nella subdir dell'App
+        if (!successCreaDir)
+            fileSalvataggio = new File(context.getFilesDir(), filenameLog);
+        else
+            fileSalvataggio = new File(sd,filenameLog);
+
+        if (!fileSalvataggio.exists()) {
+            try {
+                fileSalvataggio.createNewFile();
+            } catch (IOException ioe) {
+                Log.e("Errore", "Creazione file - " + fileSalvataggio.getAbsolutePath() + " - non riuscita");
+            }
+        }
+        fileSalvataggio.setReadable(true,false);
+    }
+
+    public static File getFileSalvataggio(){
+    /* TODO: Workaround per evitare un nullpointer exception quanto adnroid, in sovraccarico e con poca memoria,
+        dealloca e reinizializza il singleton(!!!)
+     */
+        if (fileSalvataggio==null)
+            setFileSalvataggio(SmsWakeUpApplication.getMyContext());
+
+        return fileSalvataggio;
+    }
 }

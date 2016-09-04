@@ -12,28 +12,61 @@ import android.media.AudioManager;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.os.PowerManager;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
+import android.provider.Telephony;
 import android.telephony.SmsMessage;
 import android.util.Log;
+
+import timber.log.Timber;
 
 public class SmsReceiver extends BroadcastReceiver {
 
     public SmsReceiver() {
+       // Timber.tag("SmsReceiver");
+        Timber.tag("SmsReceiver");
+        Timber.e(this.getClass().getSimpleName()+" - "+Thread.currentThread().getStackTrace()[2].getMethodName());
     }
 
     @Override
     public void onReceive(Context context, Intent intent) {
         // This method is called when the BroadcastReceiver is receiving
         // an Intent broadcast.
+        Timber.tag("SmsReceiver");
+        Timber.e(this.getClass().getSimpleName()+" - "+Thread.currentThread().getStackTrace()[2].getMethodName());
         String address1 = null;
         String msgBody = null;
 
         Bundle bundle = intent.getExtras();
-        if (bundle != null) {
-            Object[] pdus = (Object[]) bundle.get("pdus");
+
+        String action = intent.getAction();
+
+        if (action==null) action="";
+        Timber.tag("SmsReceiverAction");
+//        Log.d("SmsReceived", action);
+//        Log.d("SmsReceived-const",Telephony.Sms.Intents.SMS_RECEIVED_ACTION);
+//        Log.d("SmsReceived-const", Intent.ACTION_BOOT_COMPLETED);
+        Timber.e("SmsReceived-const1: " + String.valueOf(Telephony.Sms.Intents.SMS_RECEIVED_ACTION));
+        Timber.e("SmsReceived-const2: " + String.valueOf(Intent.ACTION_BOOT_COMPLETED));
+        Timber.e("SmsReceived-action: " + action);
+
+        // Al boot imposto un allarme che si autorilancia ogni XX minuti
+        if (action.equals(Intent.ACTION_BOOT_COMPLETED)){
+            PollingAlarmReceiver.stopAlarm(context);
+            PollingAlarmReceiver.startAlarm(context);
+        }
+
+        if (action.equals(Telephony.Sms.Intents.SMS_RECEIVED_ACTION)) {
+            Timber.e("SmsReceived: Action processing SMS");
+
+            if (bundle != null) {
+                Object[] pdus = (Object[]) bundle.get("pdus");
+                Timber.tag("SmsReceiverAction");
+                Timber.e("SmsReceived: Bundle is NOT null");
 
 //            /// DEBUG
 //            for (String key : bundle.keySet()) {
@@ -43,25 +76,53 @@ public class SmsReceiver extends BroadcastReceiver {
 //            }
 //            /// DEBUG
 
-            if (pdus != null) {
-                SmsMessage[] messages = new SmsMessage[pdus.length];
-                for (int i = 0; i < pdus.length; i++) {
-                    messages[i] = SmsMessage.createFromPdu((byte[]) pdus[i]);
-                    address1 = messages[i].getOriginatingAddress();
-                    msgBody = messages[i].getMessageBody();
-                }
+                if (pdus != null) {
+                    Timber.tag("SmsReceiverAction");
+                    Timber.e("SmsReceived: PDU is NOT null");
 
-                // Apro la maschera solo se il messaggio è quello corretto
-                if (shouldBeActivated(context, msgBody, address1)) {
-                   // activateActionActivity(context, msgBody, address1);
-                    activateActionAlarm(context, msgBody, address1);
+                    SmsMessage[] messages = new SmsMessage[pdus.length];
+                    for (int i = 0; i < pdus.length; i++) {
+
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                            String format = bundle.getString("format");
+                            messages[i] = SmsMessage.createFromPdu((byte[]) pdus[i], format);
+                            Timber.tag("SmsReceiverAction");
+                            Timber.e("Format: "+format);
+                        }
+                        else {
+                            messages[i] = SmsMessage.createFromPdu((byte[]) pdus[i]);
+                        }
+
+                        // messages[i] = SmsMessage.createFromPdu((byte[]) pdus[i]);
+                        address1 = messages[i].getOriginatingAddress();
+                        msgBody = messages[i].getMessageBody();
+                        Timber.tag("SmsReceiverAction");
+                        Timber.e("SMS From: "+address1+ "\nSMS Msg:"+ msgBody+"\n");
+                    }
+
+                    // Apro la maschera solo se il messaggio è quello corretto
+                    if (shouldBeActivated(context, msgBody, address1)) {
+                        // activateActionActivity(context, msgBody, address1);
+                        activateActionAlarm(context, msgBody, address1);
+                    }
                 }
             }
+        } else{  // Reimposto l'allarme per ogni action ricevuta
+            PollingAlarmReceiver.stopAlarm(context);
+            PollingAlarmReceiver.startAlarm(context);
         }
     }
 
-    private void activateActionAlarm (Context context,String msgBody, String msgNumber){
+    @Override
+    public IBinder peekService(Context myContext, Intent service) {
+        Timber.tag("SmsReceiver");
+        Timber.e(this.getClass().getSimpleName()+" - "+Thread.currentThread().getStackTrace()[2].getMethodName());
+        return super.peekService(myContext, service);
+    }
 
+    private void activateActionAlarm (Context context, String msgBody, String msgNumber){
+        Timber.tag("SmsReceiver");
+        Timber.e(this.getClass().getSimpleName()+" - "+Thread.currentThread().getStackTrace()[2].getMethodName());
 
         // SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
 

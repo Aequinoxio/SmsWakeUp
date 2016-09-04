@@ -11,9 +11,14 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Build;
+import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.TaskStackBuilder;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -36,6 +41,8 @@ import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import timber.log.Timber;
+
 public class MainActivity extends AppCompatActivity {
 
     String msgBody;
@@ -49,6 +56,9 @@ public class MainActivity extends AppCompatActivity {
     private BroadcastReceiver mMessageFromServiceReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
+            Timber.tag("MainActivity:BrdcstRec");
+            Timber.e(this.getClass().getSimpleName()+" - "+Thread.currentThread().getStackTrace()[2].getMethodName());
+
             // Aggiorno l'interfaccia
             updateUI();
         }
@@ -57,6 +67,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data)
     {
+        Timber.tag("MainActivity");
+        Timber.e(this.getClass().getSimpleName()+" - "+Thread.currentThread().getStackTrace()[2].getMethodName());
+
         super.onActivityResult(requestCode, resultCode, data);
 
         if(requestCode==SETTINGS_RESULTCODE)
@@ -70,7 +83,16 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Timber.tag("MainActivity");
+        Timber.e(this.getClass().getSimpleName()+" - "+Thread.currentThread().getStackTrace()[2].getMethodName());
+
         super.onCreate(savedInstanceState);
+
+        PollingAlarmReceiver.stopAlarm(this);
+        PollingAlarmReceiver.startAlarm(this);
+
+        // Timber.tag("MainActivity");
+
         setContentView(R.layout.activity_main);
         loadSharedPreferences();
 
@@ -93,6 +115,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
+        Timber.tag("MainActivity");
+        Timber.e(this.getClass().getSimpleName()+" - "+Thread.currentThread().getStackTrace()[2].getMethodName());
+
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu, menu);
 
@@ -108,6 +133,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        Timber.tag("MainActivity");
+        Timber.e(this.getClass().getSimpleName()+" - "+Thread.currentThread().getStackTrace()[2].getMethodName());
+
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
@@ -209,6 +237,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
+        Timber.tag("MainActivity");
+        Timber.e(this.getClass().getSimpleName()+" - "+Thread.currentThread().getStackTrace()[2].getMethodName());
+
         super.onResume();
 
         // Registro il receiver locale
@@ -219,6 +250,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void svegliaBambocci(){
+        Timber.tag("MainActivity");
+        Timber.e(this.getClass().getSimpleName()+" - "+Thread.currentThread().getStackTrace()[2].getMethodName());
+
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(getString(R.string.msgTitleSvegliaBambocci));
 
@@ -278,6 +312,9 @@ public class MainActivity extends AppCompatActivity {
         registerReceiver(new BroadcastReceiver(){
             @Override
             public void onReceive(Context arg0, Intent arg1) {
+                Timber.tag("MainActivity:SmsRec1");
+                Timber.e(this.getClass().getSimpleName()+" - "+Thread.currentThread().getStackTrace()[2].getMethodName());
+
                 String smsResultMessage="";
                 switch (getResultCode())
                 {
@@ -358,4 +395,90 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+
+    /////////
+
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        Timber.tag("MainActivity");
+        Timber.e(this.getClass().getSimpleName()+" - "+Thread.currentThread().getStackTrace()[2].getMethodName());
+
+        super.onConfigurationChanged(newConfig);
+    }
+
+    @Override
+    public void onContentChanged() {
+        Timber.tag("MainActivity");
+        Timber.e(this.getClass().getSimpleName()+" - "+Thread.currentThread().getStackTrace()[2].getMethodName());
+        super.onContentChanged();
+    }
+
+    @Override
+    public void onCreateSupportNavigateUpTaskStack(@NonNull TaskStackBuilder builder) {
+        Timber.tag("MainActivity");
+        Timber.e(this.getClass().getSimpleName()+" - "+Thread.currentThread().getStackTrace()[2].getMethodName());
+
+        super.onCreateSupportNavigateUpTaskStack(builder);
+    }
+
+    @Override
+    protected void onDestroy() {
+        Timber.tag("MainActivity");
+        Timber.e(this.getClass().getSimpleName()+" - "+Thread.currentThread().getStackTrace()[2].getMethodName());
+        super.onDestroy();
+    }
+
+    @Override
+    public boolean onMenuOpened(int featureId, Menu menu) {
+        Timber.tag("MainActivity");
+        Timber.e(this.getClass().getSimpleName()+" - "+Thread.currentThread().getStackTrace()[2].getMethodName());
+
+        return super.onMenuOpened(featureId, menu);
+    }
+
+    @Override
+    public void onPanelClosed(int featureId, Menu menu) {
+        Timber.tag("MainActivity");
+        Timber.e(this.getClass().getSimpleName()+" - "+Thread.currentThread().getStackTrace()[2].getMethodName());
+        super.onPanelClosed(featureId, menu);
+    }
+
+    @Override
+    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+        Timber.tag("MainActivity");
+        Timber.e(this.getClass().getSimpleName()+" - "+Thread.currentThread().getStackTrace()[2].getMethodName());
+
+        super.onPostCreate(savedInstanceState);
+    }
+
+    @Override
+    protected void onPostResume() {
+        Timber.tag("MainActivity");
+        Timber.e(this.getClass().getSimpleName()+" - "+Thread.currentThread().getStackTrace()[2].getMethodName());
+        super.onPostResume();
+    }
+
+    @Override
+    public void onPrepareSupportNavigateUpTaskStack(@NonNull TaskStackBuilder builder) {
+        Timber.tag("MainActivity");
+        Timber.e(this.getClass().getSimpleName()+" - "+Thread.currentThread().getStackTrace()[2].getMethodName());
+
+        super.onPrepareSupportNavigateUpTaskStack(builder);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        Timber.tag("MainActivity");
+        Timber.e(this.getClass().getSimpleName()+" - "+Thread.currentThread().getStackTrace()[2].getMethodName());
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onStop() {
+        Timber.tag("MainActivity");
+        Timber.e(this.getClass().getSimpleName()+" - "+Thread.currentThread().getStackTrace()[2].getMethodName());
+        super.onStop();
+    }
 }
